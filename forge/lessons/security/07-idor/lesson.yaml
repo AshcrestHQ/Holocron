@@ -1,0 +1,5 @@
+slug: idor
+title: "Insecure Direct Object Reference (IDOR)"
+track: security
+xp: 20
+difficulty: beginner
