@@ -44,7 +44,7 @@ class Lesson:
 
     def check(self, answer: str) -> bool:
         """Dynamically load check.py and call its check() function."""
-        spec = importlib.util.spec_from_file_location(f"forge_check_{self.slug}", self.check_path)
+        spec = importlib.util.spec_from_file_location(f"holocron_check_{self.slug}", self.check_path)
         module = importlib.util.module_from_spec(spec)
         sys.modules[spec.name] = module
         spec.loader.exec_module(module)  # type: ignore[union-attr]

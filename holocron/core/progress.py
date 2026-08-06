@@ -1,5 +1,5 @@
 """
-Local progress tracking, stored as plain JSON in ~/.forge/progress.json.
+Local progress tracking, stored as plain JSON in ~/.holocron/progress.json.
 
 Deliberately simple (no DB) so the tool works offline with zero setup.
 A sync-to-AshcrestHQ-leaderboard command can be layered on top of this
@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
 
-PROGRESS_PATH = Path.home() / ".forge" / "progress.json"
+PROGRESS_PATH = Path.home() / ".holocron" / "progress.json"
 
 
 @dataclass

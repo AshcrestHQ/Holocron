@@ -1,4 +1,4 @@
-forge_cli.egg-info/
+holocron_cli.egg-info/
 __pycache__/
 *.pyc
 scratch_generate.py

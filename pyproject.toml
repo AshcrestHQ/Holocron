@@ -1,5 +1,5 @@
 [project]
-name = "forge-cli"
+name = "holocron-cli"
 version = "0.1.0"
 description = "AshcrestHQ's learn-by-doing CLI — security fundamentals and open source contribution skills, one lesson at a time."
 readme = "README.md"
@@ -12,14 +12,14 @@ dependencies = [
 ]
 
 [project.scripts]
-forge = "forge.cli:main"
+holocron = "holocron.cli:main"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["forge*"]
+include = ["holocron*"]
 
 [tool.setuptools.package-data]
-forge = ["lessons/**/*"]
+holocron = ["lessons/**/*"]

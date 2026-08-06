@@ -1,5 +1,5 @@
 """
-Forge — AshcrestHQ's learn-by-doing CLI.
+Holocron — AshcrestHQ's learn-by-doing CLI.
 
 Two tracks, one XP system:
   - security: the CyberHeaven-style fundamentals track
@@ -20,10 +20,10 @@ from rich.panel import Panel
 from rich.progress import BarColumn, Progress as RichProgress, TextColumn
 from rich.table import Table
 
-from forge.core.lesson import Lesson, discover_lessons
-from forge.core.progress import load_progress, record_completion
+from holocron.core.lesson import Lesson, discover_lessons
+from holocron.core.progress import load_progress, record_completion
 
-app = typer.Typer(help="Forge — learn security and open source contribution, one lesson at a time.")
+app = typer.Typer(help="Holocron — learn security and open source contribution, one lesson at a time.")
 console = Console()
 
 LESSONS_DIR = Path(__file__).parent / "lessons"
@@ -45,7 +45,7 @@ def list(track: str = typer.Option(None, help="Filter by track: security or dev"
     if track:
         lessons = [l for l in lessons if l.track == track]
 
-    table = Table(title="Forge Lessons", show_lines=False)
+    table = Table(title="Holocron Lessons", show_lines=False)
     table.add_column("Status")
     table.add_column("Slug", style="bold")
     table.add_column("Title")
@@ -67,7 +67,7 @@ def start(slug: str):
     lessons = discover_lessons(LESSONS_DIR)
     match = next((l for l in lessons if l.slug == slug), None)
     if not match:
-        console.print(f"[red]No lesson found with slug '{slug}'.[/red] Run [bold]forge list[/bold] to see options.")
+        console.print(f"[red]No lesson found with slug '{slug}'.[/red] Run [bold]holocron list[/bold] to see options.")
         raise typer.Exit(code=1)
 
     color = TRACK_COLORS.get(match.track, "white")
@@ -84,7 +84,7 @@ def start(slug: str):
         else:
             console.print(f"[bold green]Correct! +{match.xp} XP[/bold green]  (streak: {progress.streak_days} day(s))")
     else:
-        console.print("[red]Not quite.[/red] Try again with [bold]forge start " + slug + "[/bold]")
+        console.print("[red]Not quite.[/red] Try again with [bold]holocron start " + slug + "[/bold]")
 
 
 @app.command()
@@ -99,7 +99,7 @@ def status():
         f"[bold]Level {level}[/bold]   {progress.xp} XP total\n"
         f"Streak: {progress.streak_days} day(s)\n"
         f"Completed: {len(progress.completed)} / {len(lessons)} lessons",
-        title="Your Forge Progress",
+        title="Your Holocron Progress",
     ))
 
     with RichProgress(TextColumn("[progress.description]{task.description}"), BarColumn(), console=console) as bar:
@@ -135,7 +135,7 @@ def link():
                 username = query.get("username", [""])[0]
                 
                 if token:
-                    config_path = Path.home() / ".forge" / "config.json"
+                    config_path = Path.home() / ".holocron" / "config.json"
                     config_path.parent.mkdir(parents=True, exist_ok=True)
                     config = {}
                     if config_path.exists():
@@ -182,7 +182,7 @@ def link():
     server.handle_request()
     
     if server.oauth_success:
-        console.print("[bold green]Account successfully linked![/bold green] You can now run [bold]forge sync[/bold].")
+        console.print("[bold green]Account successfully linked![/bold green] You can now run [bold]holocron sync[/bold].")
     else:
         console.print("[red]Linking failed or was interrupted.[/red]")
 
@@ -194,7 +194,7 @@ def sync():
     import json
     import urllib.request
     
-    config_path = Path.home() / ".forge" / "config.json"
+    config_path = Path.home() / ".holocron" / "config.json"
     config = {}
     if config_path.exists():
         with open(config_path, "r") as f:
@@ -210,7 +210,7 @@ def sync():
     token = os.environ.get("FORGE_API_TOKEN", config.get("forge_token"))
     
     if not token:
-        token = typer.prompt("Enter your Forge Token (or run forge link)", hide_input=True)
+        token = typer.prompt("Enter your Holocron Token (or run holocron link)", hide_input=True)
         
     progress = load_progress()
     lessons = discover_lessons(LESSONS_DIR)
@@ -243,7 +243,7 @@ def sync():
         req = urllib.request.Request(sync_url, method="POST")
         req.add_header("Content-Type", "application/json")
         req.add_header("Authorization", f"Bearer {token}")
-        req.add_header("User-Agent", "Forge-CLI/1.0")
+        req.add_header("User-Agent", "Holocron-CLI/1.0")
         
         json_data = json.dumps(data).encode("utf-8")
         
