@@ -26,8 +26,8 @@ Holocron is an interactive, gamified command-line application built by AshcrestH
 ## Project Homepage
 
 Visit the official AshcrestHQ portal and contribution guide:
-- **Website**: [https://ashcresthq-site.vercel.app](https://ashcresthq-site.vercel.app)
-- **Contribution Guide**: [https://ashcresthq-site.vercel.app/contribute.html](https://ashcresthq-site.vercel.app/contribute.html)
+- **Website**: [https://ashcresthq.dpdns.org](https://ashcresthq.dpdns.org)
+- **Contribution Guide**: [https://ashcresthq.dpdns.org/contribute](https://ashcresthq.dpdns.org/contribute)
 
 ---
 
