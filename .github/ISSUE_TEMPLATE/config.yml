@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: AshcrestHQ Community Site
+    url: https://ashcresthq-site.vercel.app/contribute.html
+    about: Read full contribution guidelines for AshcrestHQ repositories.
